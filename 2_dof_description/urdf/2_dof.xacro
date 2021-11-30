@@ -1,0 +1,142 @@
+<?xml version="1.0" ?>
+<robot name="2_dof" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find 2_dof_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find 2_dof_description)/urdf/2_dof.trans" />
+<xacro:include filename="$(find 2_dof_description)/urdf/2_dof.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="3.860015400081353e-17 3.860015400081353e-17 0.004999999999999999"/>
+    <mass value="0.34680237652518564"/>
+    <inertia ixx="0.000125" ixy="0.0" ixz="0.0" iyy="0.000125" iyz="0.0" izz="0.000244"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="arm_link_v1_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.0 -1.7763568394002505e-17 0.07500000000000001"/>
+    <mass value="1.0303125000000002"/>
+    <inertia ixx="0.001985" ixy="0.0" ixz="0.0" iyy="0.002037" iyz="0.0" izz="0.000159"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0 -0.0 -0.01"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/arm_link_v1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0 -0.0 -0.01"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/arm_link_v1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="fist_link_v8_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.12729700646569675 -0.04498485226422049 0.17500001099890117"/>
+    <mass value="0.9624376752454894"/>
+    <inertia ixx="0.000357" ixy="2e-06" ixz="0.0" iyy="0.002901" iyz="0.0" izz="0.003114"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0 -0.025 0.045"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/fist_link_v8_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="polymide_kapton"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0 -0.025 0.045"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/fist_link_v8_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_claw_v2_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.02250000000000002 -0.09481197487163823 0.13"/>
+    <mass value="0.01524469565690916"/>
+    <inertia ixx="1e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="3e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.175 -0.045 -0.0"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/left_claw_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="rubber_soft"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.175 -0.045 -0.0"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/left_claw_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_claw_v2_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.02250000000000002 0.03981197487163816 0.13"/>
+    <mass value="0.01524469565690916"/>
+    <inertia ixx="1e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="3e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.175 0.03 -0.0"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/right_claw_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="rubber_soft"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.175 0.03 -0.0"/>
+    <geometry>
+      <mesh filename="package://2_dof_description/meshes/right_claw_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rev1" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.01"/>
+  <parent link="base_link"/>
+  <child link="arm_link_v1_1"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+</joint>
+
+<joint name="Rev2" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0 0.025 -0.055"/>
+  <parent link="arm_link_v1_1"/>
+  <child link="fist_link_v8_1"/>
+  <axis xyz="0.0 -1.0 -0.0"/>
+</joint>
+
+<joint name="Slider5" type="prismatic">
+  <origin rpy="0 0 0" xyz="0.175 0.02 0.045"/>
+  <parent link="fist_link_v8_1"/>
+  <child link="left_claw_v2_1"/>
+  <axis xyz="-0.0 -1.0 -0.0"/>
+  <limit effort="100" lower="0.0" upper="0.0" velocity="100"/>
+</joint>
+
+<joint name="Slider6" type="prismatic">
+  <origin rpy="0 0 0" xyz="0.175 -0.055 0.045"/>
+  <parent link="fist_link_v8_1"/>
+  <child link="right_claw_v2_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit effort="100" lower="0.0" upper="0.0" velocity="100"/>
+</joint>
+
+</robot>
